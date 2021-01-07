@@ -1,4 +1,4 @@
-// Dart imports:
+// Dart imports: Created by khaled
 import 'dart:async';
 
 // Flutter imports:
@@ -170,7 +170,7 @@ class _BetterPlayerMaterialControlsState
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  _buildMoreButton(),
+          //        _buildMoreButton(),
                 ],
               ),
             ),
@@ -193,6 +193,37 @@ class _BetterPlayerMaterialControlsState
     );
   }
 
+
+ String _getDuration(){
+
+   Duration duration = this._controller.value.duration;
+ String formattedTime="";
+
+if(this._controller.value.duration.toString()=="null"){
+
+  return "00:00:00";
+}else{
+String hour,sec,min;
+if(duration.inHours<10)hour="0"+duration.inHours.toString(); else hour=duration.inHours.toString(); 
+if(duration.inMinutes.remainder(60)<10)min="0"+duration.inMinutes.remainder(60).toString(); else min=duration.inMinutes.remainder(60).toString(); 
+if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).toString(); else sec=duration.inSeconds.remainder(60).toString(); 
+
+    return hour+":"+min+":"+sec;
+
+}
+
+  
+
+
+
+
+
+
+  
+
+
+}
+
   Widget _buildBottomBar() {
     if (!betterPlayerController.controlsEnabled) {
       return const SizedBox();
@@ -207,7 +238,22 @@ class _BetterPlayerMaterialControlsState
         child: Row(
           children: [
             if (_controlsConfiguration.enablePlayPause)
-              _buildPlayPause(_controller)
+            Container(
+              padding: EdgeInsets.only(left: 6,right:11),
+              child: FutureBuilder(
+                  future: _controller.position, 
+                    builder:   (context, AsyncSnapshot<Duration> snapshot)
+                    {
+                    Duration duration = snapshot.data;
+
+    String formattedTime= [duration.inHours, duration.inMinutes, duration.inSeconds]
+      .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
+      .join(':');
+                  
+                     return  Text(formattedTime);
+                    }
+                  ),
+            )
             else
               const SizedBox(),
             if (_betterPlayerController.isLiveStream())
@@ -222,10 +268,24 @@ class _BetterPlayerMaterialControlsState
               _controlsConfiguration.enableProgressBar
                   ? _buildProgressBar()
                   : const SizedBox(),
-            if (_controlsConfiguration.enableMute)
-              _buildMuteButton(_controller)
-            else
-              const SizedBox(),
+
+
+                    Padding(
+       padding: const EdgeInsets.symmetric(horizontal: 3),
+       child: Text(_getDuration()),
+     ),
+   
+
+
+InkWell(
+child:Icon(Icons.settings,color: Colors.amber,)
+,onTap: onShowMoreClicked,
+),
+
+            //if (_controlsConfiguration.enableMute)
+            //  _buildMuteButton(_controller)
+          //  else
+        //      const SizedBox(),
             if (_controlsConfiguration.enableFullscreen)
               _buildExpandButton()
             else
@@ -297,13 +357,26 @@ class _BetterPlayerMaterialControlsState
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           if (_controlsConfiguration.enableSkips)
             _buildSkipButton()
           else
             const SizedBox(),
-          _buildReplayButton(),
+          
+         // _buildReplayButton(),
+//_buildPlayPause(_controller),
+
+FloatingActionButton(onPressed: _onPlayPause,
+backgroundColor: Colors.amber,
+child:Icon(
+  _controller.value.isPlaying
+      ? _controlsConfiguration.pauseIcon
+      : _controlsConfiguration.playIcon,
+  color: Colors.white,
+),
+
+),
           if (_controlsConfiguration.enableSkips)
             _buildForwardButton()
           else
@@ -335,24 +408,24 @@ class _BetterPlayerMaterialControlsState
   }
 
   Widget _buildSkipButton() {
-    return _buildHitAreaClickableButton(
-      icon: Icon(
-        _controlsConfiguration.skipBackIcon,
+    return InkWell(
+      child: Icon(
+      Icons.replay_10,
         size: 32,
         color: _controlsConfiguration.iconsColor,
       ),
-      onClicked: skipBack,
+      onTap: skipBack,
     );
   }
 
   Widget _buildForwardButton() {
-    return _buildHitAreaClickableButton(
-      icon: Icon(
-        _controlsConfiguration.skipForwardIcon,
+    return InkWell(
+      child: Icon(
+        Icons.forward_10,
         size: 32,
         color: _controlsConfiguration.iconsColor,
       ),
-      onClicked: skipForward,
+      onTap: skipForward,
     );
   }
 
@@ -633,8 +706,7 @@ class _BetterPlayerMaterialControlsState
 
     return CircularProgressIndicator(
       valueColor: AlwaysStoppedAnimation<Color>(
-          _controlsConfiguration.loadingColor ??
-              _controlsConfiguration.controlBarColor),
+         Colors.amber ),
     );
   }
 }
