@@ -55,6 +55,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
 
   void onShowMoreClicked() {
     showModalBottomSheet<void>(
+       backgroundColor: Colors.black54,
       context: context,
       builder: (context) {
         return SafeArea(
