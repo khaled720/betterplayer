@@ -1,4 +1,4 @@
-// Dart imports:
+// Dart imports:##################
 import 'dart:math';
 
 // Flutter imports:
@@ -55,7 +55,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
 
   void onShowMoreClicked() {
     showModalBottomSheet<void>(
-       backgroundColor: Colors.black54,
+       backgroundColor: Colors.black,
       context: context,
       builder: (context) {
         return SafeArea(
@@ -138,6 +138,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
   void _showSpeedChooserWidget() {
     showModalBottomSheet<void>(
         context: context,
+         backgroundColor: Colors.black,
         builder: (context) {
           return SafeArea(
             top: false,
@@ -227,6 +228,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
 
     showModalBottomSheet<void>(
       context: context,
+         backgroundColor: Colors.black,
       builder: (context) {
         return SafeArea(
           top: false,
@@ -303,6 +305,7 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
 
     showModalBottomSheet<void>(
       context: context,
+         backgroundColor: Colors.black,
       builder: (context) {
         return SafeArea(
           top: false,

@@ -1,4 +1,4 @@
-// Dart imports:
+// Dart imports:################
 import 'dart:async';
 import 'dart:ui' as ui;
 
@@ -13,6 +13,7 @@ import 'package:better_player/src/controls/better_player_progress_colors.dart';
 import 'package:better_player/src/core/better_player_controller.dart';
 import 'package:better_player/src/core/better_player_utils.dart';
 import 'package:better_player/src/video_player/video_player.dart';
+import 'package:flutter/services.dart';
 
 class BetterPlayerCupertinoControls extends StatefulWidget {
   ///Callback used to send information if player bar is hidden or not
@@ -764,10 +765,14 @@ print("ERROR In Future Builder "+e.toString());
 
   void _onExpandCollapse() {
     setState(() {
+      _betterPlayerController.isFullScreen?SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom])
+      :print("full Screen Disabled.....");
       _hideStuff = true;
 
       _betterPlayerController.toggleFullScreen();
+      
       _expandCollapseTimer = Timer(_controlsConfiguration.controlsHideTime, () {
+
         setState(() {
           cancelAndRestartTimer();
         });

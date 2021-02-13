@@ -167,9 +167,9 @@ class BetterPlayerControlsConfiguration {
     this.playbackSpeedIcon = Icons.shutter_speed,
     this.qualitiesIcon = Icons.hd,
     this.subtitlesIcon = Icons.text_fields,
-    this.overflowMenuIconsColor = Colors.black,
+    this.overflowMenuIconsColor = Colors.white,
     this.skipsTimeInMilliseconds = 15000,
-    this.loadingColor = Colors.black,
+    this.loadingColor = Colors.white,
     this.loadingWidget,
   });
 
