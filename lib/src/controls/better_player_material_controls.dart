@@ -203,11 +203,12 @@ if(this._controller.value.duration.toString()=="null"){
 
   return "00:00:00";
 }else{
-String hour,sec,min;
+String hour="00",sec="00",min="00";
+if(duration.inHours!=null){
 if(duration.inHours<10)hour="0"+duration.inHours.toString(); else hour=duration.inHours.toString(); 
 if(duration.inMinutes.remainder(60)<10)min="0"+duration.inMinutes.remainder(60).toString(); else min=duration.inMinutes.remainder(60).toString(); 
 if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).toString(); else sec=duration.inSeconds.remainder(60).toString(); 
-
+}
     return hour+":"+min+":"+sec;
 
 }
