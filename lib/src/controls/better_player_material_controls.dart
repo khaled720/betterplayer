@@ -247,9 +247,10 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
                     {
                     Duration duration = snapshot.data;
 
-    String formattedTime= [duration.inHours, duration.inMinutes, duration.inSeconds]
-      .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
-      .join(':');
+    String formattedTime="11:11:11";
+    // [duration.inHours, duration.inMinutes, duration.inSeconds]
+      //.map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
+      //.join(':');
                   
                      return  Text(formattedTime);
                     }
@@ -274,11 +275,12 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
                     Padding(
        padding: const EdgeInsets.symmetric(horizontal: 3),
        child: Text(
-this._controller.value.duration.inHours.toString()
-+":"+
-this._controller.value.duration.inMinutes.remainder(60).toString()
-+":"+
-this._controller.value.duration.inSeconds.remainder(60).toString()
+"00:00:00"
+// this._controller.value.duration.inHours.toString()
+// +":"+
+// this._controller.value.duration.inMinutes.remainder(60).toString()
+// +":"+
+// this._controller.value.duration.inSeconds.remainder(60).toString()
        ),
      ),
    
