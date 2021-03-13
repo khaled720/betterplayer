@@ -275,12 +275,12 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
                     Padding(
        padding: const EdgeInsets.symmetric(horizontal: 3),
        child: Text(
-"00:00:00"
-// this._controller.value.duration.inHours.toString()
-// +":"+
-// this._controller.value.duration.inMinutes.remainder(60).toString()
-// +":"+
-// this._controller.value.duration.inSeconds.remainder(60).toString()
+//"00:00:00"
+ this._controller.value.duration.inHours.toString()
+ +":"+
+ this._controller.value.duration.inMinutes.remainder(60).toString()
+ +":"+
+ this._controller.value.duration.inSeconds.remainder(60).toString()
        ),
      ),
    
