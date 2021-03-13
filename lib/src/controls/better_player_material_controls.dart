@@ -241,20 +241,25 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
             if (_controlsConfiguration.enablePlayPause)
             Container(
               padding: EdgeInsets.only(left: 6,right:11),
-              child: FutureBuilder(
-                  future: _controller.position, 
-                    builder:   (context, AsyncSnapshot<Duration> snapshot)
-                    {
-                    Duration duration = snapshot.data;
+              child:
+Text("##:##:##")
+              // FutureBuilder(
+  //                 future: _controller.position, 
+  //                   builder:   (context, AsyncSnapshot<Duration> snapshot)
+  //                   {
 
-    String formattedTime="11:11:11";
-    // [duration.inHours, duration.inMinutes, duration.inSeconds]
-      //.map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
-      //.join(':');
+  //                     if(snapshot.connectionState==ConnectionState.waiting)return Text("00:00:00");
+  //           if(snapshot.hasError)return Text("00:00:00");
+
+  //   Duration duration = snapshot.data;
+  //   String formattedTime=
+  //  [duration.inHours, duration.inMinutes, duration.inSeconds]
+  //     .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
+  //     .join(':');
                   
-                     return  Text(formattedTime);
-                    }
-                  ),
+  //                    return  Text(formattedTime);
+  //                   }
+  //                 ),
             )
             else
               const SizedBox(),
@@ -274,14 +279,15 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
 
                     Padding(
        padding: const EdgeInsets.symmetric(horizontal: 3),
-       child: Text(
+       child: this._controller.value.duration!=null?
+       Text(
 //"00:00:00"
  this._controller.value.duration.inHours.toString()
  +":"+
  this._controller.value.duration.inMinutes.remainder(60).toString()
  +":"+
  this._controller.value.duration.inSeconds.remainder(60).toString()
-       ),
+       ):Text("00:00:00")
      ),
    
 
