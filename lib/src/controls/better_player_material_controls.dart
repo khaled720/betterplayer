@@ -242,24 +242,31 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
             Container(
               padding: EdgeInsets.only(left: 6,right:11),
               child:
-Text("##:##:##")
-              // FutureBuilder(
-  //                 future: _controller.position, 
-  //                   builder:   (context, AsyncSnapshot<Duration> snapshot)
-  //                   {
+               FutureBuilder(
+                   future: _controller.position, 
+                     builder:   (context, AsyncSnapshot<Duration> snapshot)
+                     {
 
-  //                     if(snapshot.connectionState==ConnectionState.waiting)return Text("00:00:00");
-  //           if(snapshot.hasError)return Text("00:00:00");
+        if(snapshot.connectionState==ConnectionState.waiting)return Text("00:00:00");
+             if(snapshot.hasError)return Text("00:00:00");
 
-  //   Duration duration = snapshot.data;
-  //   String formattedTime=
-  //  [duration.inHours, duration.inMinutes, duration.inSeconds]
-  //     .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
-  //     .join(':');
-                  
-  //                    return  Text(formattedTime);
-  //                   }
-  //                 ),
+     Duration duration = snapshot.data;
+    String formattedTime;
+     if(duration!=null){
+formattedTime=
+    [duration.inHours, duration.inMinutes, duration.inSeconds]
+       .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
+       .join(':');
+       
+
+     }else{
+
+       formattedTime="00:00:00";
+     }
+              
+                      return  Text(formattedTime);
+                     }
+                   ),
             )
             else
               const SizedBox(),
