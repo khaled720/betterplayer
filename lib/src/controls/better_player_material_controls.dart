@@ -248,7 +248,7 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
                      {
 
         if(snapshot.connectionState==ConnectionState.waiting)return Text("00:00:00");
-             if(snapshot.hasError)return Text("00:00:00");
+          else{
 
      Duration duration = snapshot.data;
     String formattedTime;
@@ -262,7 +262,9 @@ formattedTime=
   
               
                       return  Text(formattedTime);
-                     }
+                           }
+                           
+                       }
                    ),
             )
             else
