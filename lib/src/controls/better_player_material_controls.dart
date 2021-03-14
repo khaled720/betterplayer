@@ -252,17 +252,14 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
 
      Duration duration = snapshot.data;
     String formattedTime;
-     if(duration!=null){
+     
 formattedTime=
     [duration.inHours, duration.inMinutes, duration.inSeconds]
        .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
        .join(':');
        
 
-     }else{
-
-       formattedTime="00:00:00";
-     }
+  
               
                       return  Text(formattedTime);
                      }
