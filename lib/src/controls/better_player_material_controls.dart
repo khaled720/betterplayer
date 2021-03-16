@@ -247,12 +247,13 @@ if(duration.inSeconds.remainder(60)<10)sec="0"+duration.inSeconds.remainder(60).
                      builder:   (context, AsyncSnapshot<Duration> snapshot)
                      {
 
-        if(snapshot.connectionState==ConnectionState.waiting)return Text("00:00:00");
-          else{
+        
+          
 
      Duration duration = snapshot.data;
     String formattedTime;
      
+     if(duration==null) duration=Duration(seconds: 0,hours: 0,minutes: 0);
 formattedTime=
     [duration.inHours, duration.inMinutes, duration.inSeconds]
        .map((seg) => seg.remainder(60).toString().padLeft(2, '0'))
@@ -262,7 +263,7 @@ formattedTime=
   
               
                       return  Text(formattedTime);
-                           }
+                           
                            
                        }
                    ),
